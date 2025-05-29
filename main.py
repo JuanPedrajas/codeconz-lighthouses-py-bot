@@ -134,7 +134,10 @@ class BotGame:
             return Movements.BOT.value
         elif dx > 0:
             return Movements.RIGHT.value
-        return Movements.LEFT.value
+        elif dx == 0 and dy == 0:
+            return (random.choice([1,0,-1]), random.choice([1,0,-1]))
+        else:
+            return Movements.LEFT.value
 
 class BotComs:
     def __init__(self, bot_name, my_address, game_server_address, verbose=False):
