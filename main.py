@@ -81,7 +81,7 @@ class BotGame:
                     return action
 
             # 60% de posibilidades de atacar el faro
-            if random.randrange(100) < 70:
+            if random.randrange(100) < 60:
                 energy = random.randrange(turn.Energy + 1)
                 action = game_pb2.NewAction(
                     Action=game_pb2.ATTACK,
@@ -94,9 +94,7 @@ class BotGame:
                 self.countT += 1
                 return action
 
-        # Buscar el faro apropiado basado en el ratio
-        # Movernos en la direcciñon adecuada, dandole nuestra posicion y la del faro que buscamos
-
+        # Mover al faro
         lighthouses_ratio = {}
         for lighthouse in turn.Lighthouses:
             ratio = self.compute_ratio(turn.Position, lighthouse)
