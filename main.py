@@ -81,7 +81,7 @@ class BotGame:
                     return action
 
             # 60% de posibilidades de atacar el faro
-            if random.randrange(100) < 40:
+            if random.randrange(100) < 70:
                 energy = random.randrange(turn.Energy + 1)
                 action = game_pb2.NewAction(
                     Action=game_pb2.ATTACK,
