@@ -42,21 +42,40 @@ class BotGame:
                 objetive_lh = lh
 
         return objetive_lh
-    
-    def mover_recto(self, turn: game_pb2.NewTurn) -> game_pb2.Action:
-        
 
-    def move_to_objetive(self) -> game_pb2.Action:
+    def move_to_objetive(self, turn: game_pb2.NewTurn) -> game_pb2.Action:
         
-        if not self.alineado():
-            # Mover diagonal
-            action = self.mover_diagonal()
-        else:
-            action = self.mover_recto()
+        move_x = 0
+        move_y = 0
+
+        if turn.Position.X > self.objetivo.Position.X:
+            move_x = -1
+
+        if turn.Position.X < self.objetivo.Position.X:
+            move_x = 1
+
+        if turn.Position.Y > self.objetivo.Position.Y:
+            move_y = -1
+
+        if turn.Position.Y < self.objetivo.Position.Y:
+            move_y = 1
+
+        action = game_pb2.NewAction(
+            Action=game_pb2.MOVE,
+            Destination=game_pb2.Position(
+                X=turn.Position.X + move_x, Y=turn.Position.Y + move_y
+            ),
+        )
         return action
     
-    def act_in_the_objetive(self) -> game_pb2.Action:
-        pass
+    def act_in_the_objetive(self, turn: game_pb2.NewTurn) -> game_pb2.Action:
+        # if energy
+            # if in faro:
+                # atacar
+            # else 
+                # MOVE in faro
+        # else
+            # move tpo energy
 
     def is_in_objetive(self, turn: game_pb2.NewTurn) -> bool:
         return self.calculate_distance(self.objetivo.Position.X,self.objetivo.Position.Y, turn) <= 1
@@ -69,9 +88,9 @@ class BotGame:
             # Calcular distancias y obtener el objetivo
             self.objetivo = self.calculate_litehouse(lighthouses, turn)
         if not self.is_in_objetive(turn):
-            action = self.move_to_objetive()
+            action = self.move_to_objetive(turn)
         else:
-            action = self.act_in_the_objetive()
+            action = self.act_in_the_objetive(turn)
 
         return action
 
