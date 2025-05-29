@@ -13,17 +13,6 @@ from internal.handler.coms import game_pb2_grpc as game_grpc
 
 MOVES = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
 
-
-class Movements(enum.Enum):
-    BOT_LEFT = (-1, -1)
-    LEFT = (-1, 0)
-    TOP_LEFT = (-1, 1)
-    TOP = (0, 1)
-    TOP_RIGHT = (1, 1)
-    RIGHT = (1, 0)
-    BOT_RIGHT = (1, -1)
-    BOT = (0, -1)
-
 timeout_to_response = 1  # 1 second
 
 
