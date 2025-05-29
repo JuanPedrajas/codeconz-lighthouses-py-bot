@@ -81,7 +81,7 @@ class BotGame:
                     return action
 
             # 60% de posibilidades de atacar el faro
-            if random.randrange(100) < 60:
+            if random.randrange(100) < 40:
                 energy = random.randrange(turn.Energy + 1)
                 action = game_pb2.NewAction(
                     Action=game_pb2.ATTACK,
@@ -93,8 +93,6 @@ class BotGame:
 
                 self.countT += 1
                 return action
-
-        # Mover aleatoriamente
 
         # Buscar el faro apropiado basado en el ratio
         # Movernos en la direcciñon adecuada, dandole nuestra posicion y la del faro que buscamos
