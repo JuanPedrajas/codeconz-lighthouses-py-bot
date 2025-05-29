@@ -119,9 +119,8 @@ class BotGame:
         return action
 
     def compute_ratio(self, our_position, lighthouse):
-        energy = lighthouse.Energy
         distance = abs(our_position.X - lighthouse.Position.X) + abs(our_position.Y - lighthouse.Position.Y)
-        ratio = 1 / ((energy+1) * (distance + 1))
+        ratio = 1 / (distance + 1)
         return ratio
 
     def get_chosen_lighthouse(self, all_lighthouses):
